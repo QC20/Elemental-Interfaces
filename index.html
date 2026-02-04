@@ -1,22 +1,147 @@
-<div class="controls">
-  <div class="controls-group display br">
-    <button class="is-active toggle" id="table">table</button>
-    <button class="toggle" id="sphere">sphere</button>
-    <button class="toggle" id="helix">helix</button>
-    <button class="toggle" id="grid">grid</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elemental Interfaces</title>
+  <link rel="stylesheet" href="src/styles/style.css">
+  <style>
+    :root {
+      --padding: 1rem;
+      --bg-1: #0a0a0a;
+      --bg-2: #141414;
+      --bg-3: #1e1e1e;
+      --bg-4: #282828;
+      --bg-5: #323232;
+      --fg-1: #e0e0e0;
+      --fg-2: #b0b0b0;
+      --red-1: #ff6b6b;
+      
+      /* Element colors */
+      --color-0-1: #e0e0e0;
+      --color-0-2: #b0b0b0;
+      --color-0-3: #505050;
+      --color-0-4: #282828;
+      --color-0-5: #141414;
+      
+      --color-1-1: #a8e6cf;
+      --color-1-2: #7fd3b0;
+      --color-1-3: #56c091;
+      --color-1-4: #3a9d73;
+      --color-1-5: #2d7a55;
+      
+      --color-2-1: #ffd3b6;
+      --color-2-2: #ffb88c;
+      --color-2-3: #ff9d62;
+      --color-2-4: #e8833a;
+      --color-2-5: #c56a1f;
+      
+      --color-3-1: #ffaaa5;
+      --color-3-2: #ff8b85;
+      --color-3-3: #ff6b6b;
+      --color-3-4: #e84a4a;
+      --color-3-5: #c93030;
+      
+      --color-4-1: #ffeaa7;
+      --color-4-2: #fddc7a;
+      --color-4-3: #fbce4d;
+      --color-4-4: #e8b727;
+      --color-4-5: #c59a0f;
+      
+      --color-5-1: #dfe6e9;
+      --color-5-2: #b2bec3;
+      --color-5-3: #636e72;
+      --color-5-4: #2d3436;
+      --color-5-5: #1e2426;
+      
+      --color-6-1: #a29bfe;
+      --color-6-2: #8a81f7;
+      --color-6-3: #6c5ce7;
+      --color-6-4: #5741d0;
+      --color-6-5: #4228b8;
+      
+      --color-7-1: #fab1a0;
+      --color-7-2: #f89779;
+      --color-7-3: #e17055;
+      --color-7-4: #d35836;
+      --color-7-5: #b5401a;
+      
+      --color-8-1: #81ecec;
+      --color-8-2: #5fd9d9;
+      --color-8-3: #00cec9;
+      --color-8-4: #00b4b0;
+      --color-8-5: #009a96;
+      
+      --color-9-1: #fd79a8;
+      --color-9-2: #fc5c8f;
+      --color-9-3: #e84393;
+      --color-9-4: #d0277c;
+      --color-9-5: #b80f65;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg-1);
+      color: var(--fg-1);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    button {
+      font-family: inherit;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 0.25rem;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    
+    /* Color system for elements */
+    .element[data-color="0"] { --color-1: var(--color-0-1); --color-2: var(--color-0-2); --color-3: var(--color-0-3); --color-4: var(--color-0-4); --color-5: var(--color-0-5); }
+    .element[data-color="1"] { --color-1: var(--color-1-1); --color-2: var(--color-1-2); --color-3: var(--color-1-3); --color-4: var(--color-1-4); --color-5: var(--color-1-5); }
+    .element[data-color="2"] { --color-1: var(--color-2-1); --color-2: var(--color-2-2); --color-3: var(--color-2-3); --color-4: var(--color-2-4); --color-5: var(--color-2-5); }
+    .element[data-color="3"] { --color-1: var(--color-3-1); --color-2: var(--color-3-2); --color-3: var(--color-3-3); --color-4: var(--color-3-4); --color-5: var(--color-3-5); }
+    .element[data-color="4"] { --color-1: var(--color-4-1); --color-2: var(--color-4-2); --color-3: var(--color-4-3); --color-4: var(--color-4-4); --color-5: var(--color-4-5); }
+    .element[data-color="5"] { --color-1: var(--color-5-1); --color-2: var(--color-5-2); --color-3: var(--color-5-3); --color-4: var(--color-5-4); --color-5: var(--color-5-5); }
+    .element[data-color="6"] { --color-1: var(--color-6-1); --color-2: var(--color-6-2); --color-3: var(--color-6-3); --color-4: var(--color-6-4); --color-5: var(--color-6-5); }
+    .element[data-color="7"] { --color-1: var(--color-7-1); --color-2: var(--color-7-2); --color-3: var(--color-7-3); --color-4: var(--color-7-4); --color-5: var(--color-7-5); }
+    .element[data-color="8"] { --color-1: var(--color-8-1); --color-2: var(--color-8-2); --color-3: var(--color-8-3); --color-4: var(--color-8-4); --color-5: var(--color-8-5); }
+    .element[data-color="9"] { --color-1: var(--color-9-1); --color-2: var(--color-9-2); --color-3: var(--color-9-3); --color-4: var(--color-9-4); --color-5: var(--color-9-5); }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <div class="controls-group display br">
+      <button class="is-active toggle" id="table">table</button>
+      <button class="toggle" id="sphere">sphere</button>
+      <button class="toggle" id="helix">helix</button>
+      <button class="toggle" id="grid">grid</button>
+    </div>
   </div>
-</div>
-<div id="scene">
-  <div id="scene-content" data-layout="table"></div>
-</div>
-<div class="credits">
-  3D transform calculations ported from this three.js <a href="https://threejs.org/examples/css3d_periodictable.html" target="_blank">demo</a>.
-</div>
-<template id="element">
-  <button class="element" data-color="0">
-    <div class="element-number"></div>
-    <div class="element-symbol"></div>
-    <div class="element-title"></div>
-    <div class="element-description"></div>
-  </button>
-</template>
+  <div id="scene">
+    <div id="scene-content" data-layout="table"></div>
+  </div>
+  <div class="credits">
+    3D transform calculations ported from this three.js <a href="https://threejs.org/examples/css3d_periodictable.html" target="_blank">demo</a>.
+  </div>
+  <template id="element">
+    <button class="element" data-color="0">
+      <div class="element-number"></div>
+      <div class="element-symbol"></div>
+      <div class="element-title"></div>
+      <div class="element-description"></div>
+    </button>
+  </template>
+  
+  <script type="module" src="src/javascript/sketch.js"></script>
+</body>
+</html>
