@@ -1,6 +1,6 @@
 # Elemental Interfaces
 
-A 3D interactive periodic table that transforms between different spatial layouts. Click between table, sphere, helix, and grid views to see all 118 elements reorganize themselves in real time.
+Elemental interfaces is a 3D interactive periodic table that transforms between different spatial layouts. Click between table, sphere, helix, and grid views to see all 118 elements reorganize themselves in real time.
 
 ## What it does
 
