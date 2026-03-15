@@ -1,3 +1,14 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Elemental Interfaces
+//
+// An interactive 3D periodic table visualization with dynamic layout
+// transformations and immersive hexagonal card interfaces
+//
+// By Jonas Kjeldmand Jensen
+//
+// March 2026
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { createLayout, utils, stagger, spring, createTimer, createAnimatable } from 'https://esm.sh/animejs@4.3.0';
 
 // Elements data to populate the table
